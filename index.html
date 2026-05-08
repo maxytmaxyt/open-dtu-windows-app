@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body { 
+            background: #0d1117; color: white; margin: 0; 
+            font-family: 'Segoe UI', sans-serif; 
+            user-select: none; touch-action: none; /* Prevents zooming/scrolling */
+            height: 100vh; overflow: hidden;
+        }
+        .grid {
+            display: grid; grid-template-columns: 1fr 1fr;
+            gap: 25px; padding: 70px 25px 25px 25px; height: 100%;
+            box-sizing: border-box;
+        }
+        .card {
+            background: #161b22; border-radius: 25px;
+            display: flex; flex-direction: column; 
+            justify-content: center; align-items: center;
+            border: 2px solid #30363d;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+        }
+        .label { font-size: 1.2rem; color: #8b949e; margin-bottom: 10px; }
+        .value { font-size: 4.5rem; color: #39d353; font-weight: bold; }
+        
+        #close-btn {
+            position: absolute; top: 15px; right: 15px;
+            width: 60px; height: 60px; border-radius: 50%;
+            background: #f85149; border: none; color: white;
+            font-size: 2rem; font-weight: bold; cursor: pointer;
+            z-index: 1000;
+        }
+        #close-btn:active { background: #da3633; }
+    </style>
+</head>
+<body>
+
+    <button id="close-btn" onclick="exit()">✕</button>
+
+    <div class="grid">
+        <div class="card">
+            <div class="label">Aktuelle Produktion</div>
+            <div class="value">540 W</div>
+        </div>
+        <div class="card">
+            <div class="label">Tagesertrag</div>
+            <div class="value">3.2 kWh</div>
+        </div>
+        <div class="card">
+            <div class="label">Netzfrequenz</div>
+            <div class="value" style="color:#58a6ff">50.0 Hz</div>
+        </div>
+        <div class="card">
+            <div class="label">Inverter Temp.</div>
+            <div class="value" style="color:#f0883e">34°C</div>
+        </div>
+    </div>
+
+    <script>
+        const { ipcRenderer } = require('electron');
+        function exit() { ipcRenderer.send('close-app'); }
+    </script>
+</body>
+</html>
