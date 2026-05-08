@@ -4,7 +4,7 @@
   "main": "main.js",
   "scripts": {
     "start": "electron .",
-    "build": "electron-builder --win portable",
+    "build": "electron-builder --win nsis",
     "dev": "electron . --enable-logging"
   },
   "dependencies": {
@@ -15,9 +15,7 @@
     "auto-launch": "^5.0.5",
     "systeminformation": "^5.21.0",
     "electron-store": "^8.1.0",
-    "node-notifier": "^10.0.1",
-    "node-global-key-listener": "^0.1.1",
-    "shelljs": "^0.8.5"
+    "node-notifier": "^10.0.1"
   },
   "devDependencies": {
     "electron": "^28.0.0",
@@ -25,13 +23,16 @@
   },
   "build": {
     "appId": "com.solar.dashboard",
-    "productName": "OpenDTU Pro Dashboard",
+    "productName": "OpenDTU Pro",
     "win": {
-      "target": "portable",
+      "target": "nsis",
       "requestedExecutionLevel": "requireAdministrator"
     },
-    "directories": {
-      "output": "dist"
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "runAfterFinish": true
     }
   }
 }
